@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation & Event Handling</title>
+
+    <script>
+
+        function validateForm() {
+
+            var name = document.myform.name.value;
+            var email = document.myform.email.value;
+            var password = document.myform.password.value;
+            var confirm = document.myform.confirm.value;
+            var phone = document.myform.phone.value;
+
+            if (name == "") {
+                alert("Name can't be blank");
+                return false;
+            }
+
+            if (email == "" || email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+                alert("Please enter a valid email.");
+                return false;
+            }
+
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters.");
+                return false;
+            }
+
+            if (password != confirm) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            if (phone.length < 10 || isNaN(phone)) {
+                alert("Please enter a valid phone number.");
+                return false;
+            }
+
+            alert("Form Submitted Successfully!");
+            return true;
+        }
+
+
+        function buttonClick() {
+            alert("Register button clicked.");
+        }
+
+        function focusField(x) {
+            x.style.background = "yellow";
+        }
+
+        function blurField(x) {
+            x.style.background = "white";
+        }
+
+        function genderChanged() {
+            alert("Gender selected.");
+        }
+
+        function typingName() {
+            console.log("User is typing...");
+        }
+
+    </script>
+
+</head>
+
+<body onload="alert('Page Loaded')">
+
+<h2>Registration Form</h2>
+
+<form name="myform" onsubmit="return validateForm()">
+
+    Name:<br>
+    <input type="text" name="name"
+           onfocus="focusField(this)"
+           onblur="blurField(this)"
+           onkeyup="typingName()">
+    <br><br>
+
+    Email:<br>
+    <input type="text" name="email"
+           onfocus="focusField(this)"
+           onblur="blurField(this)">
+    <br><br>
+
+    Password:<br>
+    <input type="password" name="password">
+    <br><br>
+
+    Confirm Password:<br>
+    <input type="password" name="confirm">
+    <br><br>
+
+    Phone Number:<br>
+    <input type="text" name="phone">
+    <br><br>
+
+    Gender:<br>
+    <select onchange="genderChanged()">
+        <option value="">--Select--</option>
+        <option>Male</option>
+        <option>Female</option>
+    </select>
+
+    <br><br>
+
+    <input type="submit" value="Register" onclick="buttonClick()">
+
+</form>
+
+</body>
+</html>
